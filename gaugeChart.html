@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>如何用echarts实现颜色渐变半圆形仪表盘</title>
+    <style>
+        .alignCenter{text-align:center}
+        .myChartPosition{height:300px;width:300px;margin:0 auto}
+    </style>
+    <script  type="text/javascript"  src="static/echarts.min.js"></script>
+</head>
+<body  class="alignCenter">
+  <button onclick="myHistoryRiskChartInit()">如何用echarts实现颜色渐变半圆形仪表盘</button>
+  <div id="myChart1"  class="myChartPosition"  ></div>
+
+<script type="text/javascript">
+    function myHistoryRiskChartInit(){
+        var myChart=echarts.init(document.getElementById("myChart1"));
+        var option={
+            tooltip: {
+                show: true,
+                trigger: 'item',
+                formatter: "{a}:{b}",
+                position: ['100%', '0%']
+            },
+            series: [{
+                type: "gauge",
+                startAngle: 185,
+                endAngle: -8,
+                clockwise: true,		// 仪表盘刻度是否是顺时针增长,默认 true。
+                min: 0,					// 最小的数据值,默认 0 。映射到 minAngle。
+                max: 4.1,				// 最大的数据值,默认 100 。映射到 maxAngle。
+                splitNumber: 5,		// 仪表盘刻度的分割段数,默认 10。
+                center: ["50%", "65%"],	// 仪表盘位置(圆心坐标)
+                axisLine: {
+                    show: true,
+                    lineStyle: {
+                        width: 15,
+                        color: [
+
+                            [
+                                0.2, new echarts.graphic.LinearGradient(
+                                0, 0, 1, 0, [{
+                                    offset: 0,
+                                    color: '#57f987'
+                                },
+                                    {
+                                        offset: 1,
+                                        color: '#6bd471'
+                                    }
+                                ]
+                            )
+                            ],
+                            [
+                                0.4, new echarts.graphic.LinearGradient(
+                                0, 0, 1, 0, [{
+                                    offset: 0,
+                                    color: '#6bd471'
+                                },
+                                    {
+                                        offset: 1,
+                                        color: '#6bd471'
+                                    }
+                                ]
+                            )
+                            ],
+                            [
+                                0.6, new echarts.graphic.LinearGradient(
+                                0, 0, 1, 0, [{
+                                    offset: 0,
+                                    color: '#6bd471'
+                                },
+                                    {
+                                        offset: 1,
+                                        color: '#eb7742'
+                                    }
+                                ]
+                            )
+                            ],
+                            [
+                                0.8, new echarts.graphic.LinearGradient(
+                                0, 0, 1, 0, [{
+                                    offset: 0,
+                                    color: '#edb168'
+                                },
+                                    {
+                                        offset: 1,
+                                        color: '#d0391c'
+                                    }
+                                ]
+                            )
+                            ],
+                            [
+                                1, new echarts.graphic.LinearGradient(
+                                0, 0, 1, 0, [{
+                                    offset: 0,
+                                    color: '#d0391c'
+                                },
+                                    {
+                                        offset: 1,
+                                        color: '#e41608'
+                                    }
+                                ]
+                            )
+                            ]
+                        ]
+                    },
+                },
+                axisTick: {
+                    show: false
+                },
+                axisLabel: {
+                    show: false
+                },
+                splitLine: {			// 分隔线样式。
+                    show: true,				// 是否显示分隔线,默认 true。
+                    length:30,				// 分隔线线长。支持相对半径的百分比,默认 30。
+                    lineStyle: {			// 分隔线样式。
+                        color: "#fff",				//线的颜色,默认 #eee。
+                        opacity: 1,					//图形透明度。支持从 0 到 1 的数字，为 0 时不绘制该图形。
+                        width: 5,					//线度,默认 2。
+                        type: "solid",				//线的类型,默认 solid。 此外还有 dashed,dotted
+                        shadowBlur: 10,				//(发光效果)图形阴影的模糊大小。该属性配合 shadowColor,shadowOffsetX, shadowOffsetY 一起设置图形的阴影效果。
+                        shadowColor: "#fff",		//阴影颜色。支持的格式同color。
+                    }
+                },
+                pointer: {
+                    width: "15%",
+                    length: '70%',
+                },
+
+                title: {
+                    show: true,
+                    offsetCenter: [0, '-130%'],
+                    // textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+                    fontSize: 20,
+                    fontWeight: 'bolder',
+                    fontStyle: 'italic',
+                    color: 'auto'
+
+                    // }
+
+                },
+                detail: {
+                    show: true
+                },
+                data: [{value: 3, name: '颜色渐变半圆形仪表盘'}]
+                /*  data:indata*/
+
+            }]};
+        myChart.setOption(option);
+    }
+
+</script>
+</body>
+</html>
